@@ -1,0 +1,13 @@
+#!/bin/bash
+set -e
+
+CONFIG_FILE=/var/www/html/
+
+sed -r -i "s/^[# ]*VAR=.*/VAR=${VAR}/g" ${CONFIG_FILE}
+
+# first arg is `-f` or `--some-option`
+if [ "${1#-}" != "$1" ]; then
+	set -- apache2-foreground "$@"
+fi
+
+exec "$@"
