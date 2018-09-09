@@ -26,9 +26,10 @@ if [ $SQL_TABLE_COUNT -ne 0 ]; then
     fi
 else
     touch $CONFIG_FILE
+    chmod 777 $CONFIG_FILE
 fi
 
-chmod 775 $APACHE_DOCUMENT_ROOT/modules/TS3Admin/templates_c
+chmod 777 $APACHE_DOCUMENT_ROOT/modules/TS3Admin/templates_c
 
 # Install extras
 EXTRAS_FOLDER="/tmp/extras"
