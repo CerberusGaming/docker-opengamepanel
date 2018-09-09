@@ -15,6 +15,10 @@ echo "\$table_prefix="ogp_";" >> ${CONFIG_FILE}
 echo "\$db_type="mysql";" >> ${CONFIG_FILE}
 echo "?>" >> ${CONFIG_FILE}
 
+if [ -f /var/www/html/install.php ]; then
+    rm -rf /var/www/html/install.php
+fi
+
 # first arg is `-f` or `--some-option`
 if [ "${1#-}" != "$1" ]; then
 	set -- apache2-foreground "$@"
