@@ -27,10 +27,13 @@ if [ ! "$EXTRAS_REPO" == "none" ]; then
     if [ -f "$EXTRAS_FOLDER/run.sh" ]; then
         chmod +x "$EXTRAS_FOLDER/run.sh"
 	eval "$EXTRAS_FOLDER/run.sh" &&
-	rm "$EXTRAS_FOLDER/run.sh"
     fi
     cp -r "$EXTRAS_FOLDER/*" $APACHE_DOCUMENT_ROOT
     chown -R $APACHE_RUN_USER:$APACHE_RUN_GROUP $APACHE_DOCUMENT_ROOT
+fi
+
+if [ -f "$APACHE_DOCUMENT_ROOT/run.sh" ]; then
+    rm "$APACHE_DOCUMENT_ROOT/run.sh"
 fi
 
 # first arg is `-f` or `--some-option`
