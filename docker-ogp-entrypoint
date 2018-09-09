@@ -26,6 +26,7 @@ if [ ! "$EXTRAS_REPO" == "none" ]; then
     fi
     cp -r $EXTRAS_FOLDER/* $APACHE_DOCUMENT_ROOT
     chown -R $APACHE_RUN_USER:$APACHE_RUN_GROUP $APACHE_DOCUMENT_ROOT
+    rm -rf $EXTRAS_FOLDER
 fi
 
 
