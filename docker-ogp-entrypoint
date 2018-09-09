@@ -27,6 +27,7 @@ fi
 if [ ! "$EXTRAS_REPO" == "none" ]; then
     git clone $EXTRAS_REPO /tmp/extras
     cp -r /tmp/extras/* /var/www/html/ 
+    chown -R $APACHE_RUN_USER:$APACHE_RUN_GROUP $APACHE_DOCUMENT_ROOT
 fi
 
 exec "$@"
