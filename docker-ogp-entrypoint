@@ -30,7 +30,6 @@ else
 fi
 
 chmod -R 777 $APACHE_DOCUMENT_ROOT/modules/TS3Admin/templates_c
-chmod -R 777 /var/www/html/modules/extras
 
 # Install extras
 EXTRAS_FOLDER="/tmp/extras"
@@ -38,15 +37,13 @@ if [ ! "$EXTRAS_REPO" == "none" ]; then
     git clone $EXTRAS_REPO $EXTRAS_FOLDER
     if [ -f "$EXTRAS_FOLDER/run.sh" ]; then
         chmod +x "$EXTRAS_FOLDER/run.sh"
-		sh "$EXTRAS_FOLDER/run.sh"
+	sh "$EXTRAS_FOLDER/run.sh" && rm "$EXTRAS_FOLDER/run.sh"
     fi
     cp -r $EXTRAS_FOLDER/* $APACHE_DOCUMENT_ROOT
-    chown -R $APACHE_RUN_USER:$APACHE_RUN_GROUP $APACHE_DOCUMENT_ROOT
     rm -rf $EXTRAS_FOLDER
-    if [ -f "$APACHE_DOCUMENT_ROOT/run.sh" ]; then
-        rm "$APACHE_DOCUMENT_ROOT/run.sh"
-    fi
 fi
+
+chown -R $APACHE_RUN_USER:$APACHE_RUN_GROUP $APACHE_DOCUMENT_ROOT
 
 # first arg is `-f` or `--some-option`
 if [ "${1#-}" != "$1" ]; then
