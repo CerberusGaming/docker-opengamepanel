@@ -10,7 +10,7 @@ ENV APACHE_DOCUMENT_ROOT "/var/www/html"
 
 
 RUN apt-get update \
-    && apt-get -y install git libxml2-dev zlib1g-dev \
+    && apt-get -y install git libxml2-dev zlib1g-dev mysql-client \
     && docker-php-ext-install bcmath mysqli xmlrpc zip
 RUN a2enmod rewrite
 
