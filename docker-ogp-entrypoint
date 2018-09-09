@@ -29,7 +29,8 @@ else
     chmod 777 $CONFIG_FILE
 fi
 
-chmod 777 $APACHE_DOCUMENT_ROOT/modules/TS3Admin/templates_c
+chmod -R 777 $APACHE_DOCUMENT_ROOT/modules/TS3Admin/templates_c
+chmod -R 777 /var/www/html/modules/extras
 
 # Install extras
 EXTRAS_FOLDER="/tmp/extras"
