@@ -14,6 +14,8 @@ RUN apt-get update \
     && docker-php-ext-install bcmath mysqli xmlrpc zip
 RUN a2enmod rewrite
 
+RUN git clone https://github.com/OpenGamePanel/OGP-Website.git .
+
 COPY config.inc.php /var/www/html/includes/
 COPY docker-ogp-entrypoint /usr/local/bin/
 RUN chown -R $APACHE_RUN_USER:$APACHE_RUN_GROUP $APACHE_DOCUMENT_ROOT \
