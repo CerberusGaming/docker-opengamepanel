@@ -34,8 +34,15 @@ fi
 if [ -f "$APACHE_DOCUMENT_ROOT/run.sh" ]; then
     rm "$APACHE_DOCUMENT_ROOT/run.sh"
 fi
-if [ -f "$APACHE_DOCUMENT_ROOT/install.php" ]; then
-    rm -rf "$APACHE_DOCUMENT_ROOT/install.php"
+
+SQL_QUERY="SELECT COUNT(*) FROM information_schema.tables WHERE TABLE_TYPE = 'BASE TABLE' AND TABLE_SCHEMA = '$MYSQL_DATABASE';"
+SQL_COMMAND="mysql -h $MYSQL_HOST -u $MYSQL_USER -p$MYSQL_PASSWORD -D $MYSQL_DATABASE -B -s -e"
+SQL_TABLE_COUNT=$(eval $SQL_COMMAND \"$SQL_QUERY\")
+echo $SQL_TABLE_COUNT
+if [ $SQL_TABLE_COUNT -ne 0 ]; then
+    if [ -f "$APACHE_DOCUMENT_ROOT/install.php" ]; then
+        rm -rf "$APACHE_DOCUMENT_ROOT/install.php"
+    fi
 fi
 
 # first arg is `-f` or `--some-option`
