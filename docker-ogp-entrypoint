@@ -26,7 +26,7 @@ if [ ! "$EXTRAS_REPO" == "none" ]; then
     git clone $EXTRAS_REPO $EXTRAS_FOLDER
     if [ -f "$EXTRAS_FOLDER/run.sh" ]; then
         chmod +x "$EXTRAS_FOLDER/run.sh"
-	"./$EXTRAS_FOLDER/run.sh"
+	exec "$EXTRAS_FOLDER/run.sh"
     fi
     cp -r "$EXTRAS_FOLDER/*" $APACHE_DOCUMENT_ROOT
     chown -R $APACHE_RUN_USER:$APACHE_RUN_GROUP $APACHE_DOCUMENT_ROOT
