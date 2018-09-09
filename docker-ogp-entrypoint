@@ -17,7 +17,7 @@ if [ $SQL_TABLE_COUNT -ne 0 ]; then
 	echo "\$db_user=\"$MYSQL_USER\";" >> ${CONFIG_FILE}
 	echo "\$db_pass=\"$MYSQL_PASSWORD\";" >> ${CONFIG_FILE}
 	echo "\$db_name=\"$MYSQL_DATABASE\";" >> ${CONFIG_FILE}
-	echo "\$table_prefix="ogp_";" >> ${CONFIG_FILE}
+	echo "\$table_prefix="$MYSQL_PREFIX";" >> ${CONFIG_FILE}
 	echo "\$db_type="mysql";" >> ${CONFIG_FILE}
 	echo "?>" >> ${CONFIG_FILE}
 	
