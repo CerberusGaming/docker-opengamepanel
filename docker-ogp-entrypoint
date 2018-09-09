@@ -15,10 +15,6 @@ echo "\$table_prefix="ogp_";" >> ${CONFIG_FILE}
 echo "\$db_type="mysql";" >> ${CONFIG_FILE}
 echo "?>" >> ${CONFIG_FILE}
 
-# Clean install file
-if [ -f "$APACHE_DOCUMENT_ROOT/install.php" ]; then
-    rm -rf "$APACHE_DOCUMENT_ROOT/install.php"
-fi
 
 # Install extras
 EXTRAS_FOLDER="/tmp/extras"
@@ -28,12 +24,17 @@ if [ ! "$EXTRAS_REPO" == "none" ]; then
         chmod +x "$EXTRAS_FOLDER/run.sh"
 	sh "$EXTRAS_FOLDER/run.sh"
     fi
-    cp -r "$EXTRAS_FOLDER/*" $APACHE_DOCUMENT_ROOT
+    cp -r $EXTRAS_FOLDER/* $APACHE_DOCUMENT_ROOT
     chown -R $APACHE_RUN_USER:$APACHE_RUN_GROUP $APACHE_DOCUMENT_ROOT
 fi
 
+
+# Clean HTTP file directory
 if [ -f "$APACHE_DOCUMENT_ROOT/run.sh" ]; then
     rm "$APACHE_DOCUMENT_ROOT/run.sh"
+fi
+if [ -f "$APACHE_DOCUMENT_ROOT/install.php" ]; then
+    rm -rf "$APACHE_DOCUMENT_ROOT/install.php"
 fi
 
 # first arg is `-f` or `--some-option`
